@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="h1 d-flex justify-content-center">Modules Entry</div>
+  <hr>
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary mr-2" (click)="handleAddClick()">Add</button>
+    <button class="btn btn-success" (click)="handleSaveClick()">Save</button>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div class="col-12 border rounded border-primary">
+        <table class="table m-2">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Is Root Module</th>
+              <th scope="col">Parent Module</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let screenMod of modules">
+              <td>
+                <input class="form-control" type="text" [(ngModel)]="screenMod.name">
+              </td>
+              <td>
+                <input type="checkbox" [(ngModel)]="screenMod.isRootModule" checked="screenMod.isRootModule">
+              </td>
+              <td>
+                <select class="form-control" [disabled]="screenMod.isRootModule"
+                  [(ngModel)]="screenMod.parentModuleId ? screenMod.parentModuleId : screenMod.parentModuleName">
+                  <option *ngFor="let test of loadModules(screenMod)"
+                    [ngValue]="screenMod.parentModuleId ? test.uid : test.name">
+                    {{test.name}}
+                  </option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="col-12 border rounded border-primary">
+        <auth-module-view [modules]="rootModules"></auth-module-view>
+      </div>
+    </div>
+  </div>
+</div>

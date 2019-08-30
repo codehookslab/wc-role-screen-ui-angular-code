@@ -1,0 +1,32 @@
+<div class="basic-container">
+  <mat-toolbar color="primary">
+    MES DYNAMIC MENU APP
+  </mat-toolbar>
+  <mat-toolbar class="menu-bar mat-elevation-z1">
+    <span *ngFor="let screen of screens">
+      <span *ngIf="screen.screens && screen.screens.length > 0">
+        <button mat-button [matMenuTriggerFor]="menu.childMenu" [disabled]="!(screen.screens.length>0)">
+          {{screen.name}}
+        </button>
+        <auth-menu-item #menu [screens]="screen.screens" (handleRouterClickChild)=handleRouterClick($event)>
+        </auth-menu-item>
+      </span>
+      <span *ngIf="!screen.screens || screen.screens.length === 0">
+        <button mat-button color="primary" (click)="handleRouterClick(screen)">
+          {{screen.name}}
+        </button>
+      </span>
+    </span>
+  </mat-toolbar>
+  <main>
+    <!-- Tab Header -->
+    <ul class="nav nav-tabs">
+      <li class="nav-item" *ngFor="let tab of tabs">
+        <a class="nav-link" [routerLink]="tab.routerLink">{{tab.name}}</a>
+      </li>
+    </ul>
+    <router-outlet></router-outlet>
+  </main>
+
+</div>
+<!-- <span class="version-info">Current build: {{version.full ? version.full : version}}</span> -->

@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="h1 d-flex justify-content-center">Work Center Role</div>
+  <hr>
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary mr-2" (click)="handleAddClick()">Add</button>
+    <button class="btn btn-success" (click)="handleSaveClick()">Save</button>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Work Center</th>
+            <th scope="col">Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let wcRole of workCenterRoles" (click)="handleOnRoleClick(wcRole)">
+            <!-- <td>
+              <input class="form-control" type="text" [(ngModel)]="wcRole.roleId.roleName">
+            </td> -->
+            <td>
+              <select class="form-control" [(ngModel)]="wcRole.wcId.workcenterid">
+                <option *ngFor="let wc of workCenters" [ngValue]="wc.workcenterid">
+                  {{wc.workcentercode}}
+                </option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" [(ngModel)]="wcRole.roleId.uid">
+                <option *ngFor="let role of roles" [ngValue]="role.uid">
+                  {{role.roleName}}
+                </option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- <div class="col-9">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Router Link</th>
+            <th scope="col">Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let screen of screens">
+            <td>{{screen.name}}</td>
+            <td>{{screen.routerPath}}</td>
+            <td>
+              <input type="checkbox" [(ngModel)]="screen.isSelected" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+  </div>
+</div>

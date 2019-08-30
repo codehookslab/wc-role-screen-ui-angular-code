@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <h1>Work Center Role Screen</h1>
+  <hr>
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary mr-2" (click)="handleAddClick()">Add</button>
+    <button class="btn btn-success" (click)="handleSaveClick()">Save</button>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <!-- Work Center Role-->
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">WC Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let wcrs of workCenterRoleScreens" (click)="handleOnClick(wcrs)">
+            <td>
+              <select>
+                <option *ngFor="let wc of workCenterRoles">{{ wc.wcId.workcentercode }} - {{ wc.roleId.roleName}}
+                </option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-9">
+      <!-- Screens -->
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Sr No</th>
+            <th scope="col">Screen</th>
+            <th scope="col">Access</th>
+            <th scope="col">View</th>
+            <th scope="col">Insert</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let wcrs of selectedWorkCenterRole.screens; let i = index;">
+            <td>
+              <label>{{ i+1 }}</label>
+            </td>
+            <td>
+              <label>{{ wcrs.screenId.name }}</label>
+            </td>
+            <td>
+              <input type="checkbox" [(ngModel)]="wcrs.isSelected">
+            </td>
+            <td>
+              <input type="checkbox" [(ngModel)]="wcrs.canView">
+            </td>
+            <td>
+              <input type="checkbox" [(ngModel)]="wcrs.canInsert">
+            </td>
+            <td>
+              <input type="checkbox" [(ngModel)]="wcrs.canUpdate">
+            </td>
+            <td>
+              <input type="checkbox" [(ngModel)]="wcrs.canDelete">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

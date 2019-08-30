@@ -1,0 +1,6 @@
+<ul *ngFor="let module of modules" class="tree">
+  <li>
+    {{loadName(module)}}
+    <auth-module-view [modules]="module.screens"></auth-module-view>
+  </li>
+</ul>

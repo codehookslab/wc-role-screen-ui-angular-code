@@ -1,0 +1,18 @@
+<mat-menu #childMenu="matMenu" [overlapTrigger]="false">
+  <span *ngFor="let screen of screens">
+    <span *ngIf="screen.screens && screen.screens.length > 0">
+      <button mat-menu-item color="primary" [matMenuTriggerFor]="menu.childMenu">
+        <!-- <mat-icon>{{child.iconName}}</mat-icon> -->
+        <span>{{screen.name}}</span>
+      </button>
+      <auth-menu-item #menu [screens]="screen.screens"></auth-menu-item>
+    </span>
+    <span *ngIf="!screen.screens || screen.screens.length === 0">
+      <button mat-menu-item (click)="handleRouterClickEvent(screen)">
+        <!--[routerLink]="screen.routerPath"-->
+        <!-- <mat-icon>{{child.iconName}}</mat-icon> -->
+        <span>{{screen.name}}</span>
+      </button>
+    </span>
+  </span>
+</mat-menu>

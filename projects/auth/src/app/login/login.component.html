@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-center align-items-center height-center">
+  <form #loginForm="ngForm" (ngSubmit)="handleLogin()" class="form border rounded border-primary p-4">
+    <div class="form-group">
+      <label for="username"></label>
+      <input type="text" name="username" placeholder="Username" class="form-control" [(ngModel)]="loginDetails.username"
+        required #username="ngModel">
+      <div class="help-block" *ngIf="!username.valid && username.touched">
+        Username is mandatory
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password"></label>
+      <input type="password" name="password" placeholder="Password" class="form-control"
+        [(ngModel)]="loginDetails.password" required #password="ngModel">
+      <div class="help-block" *ngIf="!password.valid && password.touched">
+        Password is mandatory
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</div>
