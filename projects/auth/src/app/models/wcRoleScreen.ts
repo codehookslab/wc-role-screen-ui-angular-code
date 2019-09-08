@@ -11,6 +11,7 @@ export interface WorkCenterRoleScreens {
   canUpdate?: boolean;
   canRemove?: boolean;
   canView?: boolean;
+  transId?: WorkCenterRoleScreensCompositeKey;
 }
 
 export interface WorkCenterRoleScreensCompositeKey {

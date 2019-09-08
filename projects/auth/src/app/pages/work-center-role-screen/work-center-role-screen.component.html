@@ -17,7 +17,7 @@
         <tbody>
           <tr *ngFor="let wcrs of _workCenterRoles" (click)="onSelectWorkCenterRole(wcrs)">
             <td>
-              <select [(ngModel)]="wcrs.id">
+              <select [(ngModel)]="wcrs.id" class="form-control">
                 <option *ngFor="let wc of workCenterRoleMasters" [(ngValue)]="wc.id">{{ wc.id.wcId.workcentercode }} -
                   {{ wc.id.roleId.roleName}}
                 </option>
@@ -44,25 +44,25 @@
         <tbody *ngIf="_selectedWorkCenterRole">
           <tr *ngFor="let wcrs of _selectedWorkCenterRole.screens; let i = index;">
             <td>
-              <label>{{ i+1 }}</label>
+              <label class="form-control">{{ i+1 }}</label>
             </td>
             <td>
-              <label>{{ wcrs.id.screenId.name }}</label>
+              <label class="form-control">{{ wcrs.id.screenId.name }}</label>
             </td>
             <td>
-              <input type="checkbox" [(ngModel)]="wcrs.isSelected">
+              <input class="form-control" type="checkbox" [(ngModel)]="wcrs.isSelected">
             </td>
             <td>
-              <input type="checkbox" [(ngModel)]="wcrs.canView">
+              <input class="form-control" type="checkbox" [(ngModel)]="wcrs.canView">
             </td>
             <td>
-              <input type="checkbox" [(ngModel)]="wcrs.canInsert">
+              <input class="form-control" type="checkbox" [(ngModel)]="wcrs.canInsert">
             </td>
             <td>
-              <input type="checkbox" [(ngModel)]="wcrs.canUpdate">
+              <input class="form-control" type="checkbox" [(ngModel)]="wcrs.canUpdate">
             </td>
             <td>
-              <input type="checkbox" [(ngModel)]="wcrs.canRemove">
+              <input class="form-control" type="checkbox" [(ngModel)]="wcrs.canRemove">
             </td>
           </tr>
         </tbody>

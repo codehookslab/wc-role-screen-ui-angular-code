@@ -41,21 +41,49 @@ export class WorkCenterRoleScreenComponent implements OnInit {
       console.log(this.workCenterRoleScreenMasters);
 
       if (this.workCenterRoleScreenMasters) {
-        let filteredArray = this.workCenterRoleMasters.filter(v => (v.screens && v.screens.length > 0))
+        const filteredArray = this.workCenterRoleMasters.filter(v => (v.screens && v.screens.length > 0))
 
         filteredArray.forEach(fWcr => {
           const selectedList = this.workCenterRoleScreenMasters.filter(wcrs => {
-            return (fWcr.id.roleId.uid === wcrs.id.wcRoleId.id.roleId.uid
-              && fWcr.id.wcId.workcenterid === wcrs.id.wcRoleId.id.wcId.workcenterid)
+            return (fWcr.id.roleId.uid === wcrs.transId.wcRoleId.id.roleId.uid
+              && fWcr.id.wcId.workcenterid === wcrs.transId.wcRoleId.id.wcId.workcenterid)
           });
-          fWcr.screens = selectedList;
-          console.log('----------------')
+          const screensToAdd: WorkCenterRoleScreens[] = [];
+          console.log(selectedList)
+          this.screenMasters.forEach( scrMtr => {
+            const index = selectedList.findIndex(sl => sl.transId.screenId.uid === scrMtr.uid);
+            if(index < 0) {
+              screensToAdd.push({
+                canRemove: false,
+                canInsert: false,
+                canUpdate: false,
+                canView: false,
+                isSelected: false,
+                id: {
+                  wcRoleId: this.workCenterRoleMasters[0],
+                  screenId: scrMtr
+                }
+              })
+            } else {
+              screensToAdd.push({
+                canRemove: selectedList[index].canRemove,
+                canInsert: selectedList[index].canInsert,
+                canUpdate: selectedList[index].canUpdate,
+                canView: selectedList[index].canView,
+                isSelected: true,
+                id: {
+                  wcRoleId: selectedList[index].transId.wcRoleId,
+                  screenId: scrMtr
+                }
+              })
+            }
+          })
+          fWcr.screens = screensToAdd;
           console.log(fWcr);
+          this._workCenterRoles.push(fWcr);
         })
-
       }
-
-
+      this.onSelectWorkCenterRole(this._workCenterRoles[0])
     });
   }
 
