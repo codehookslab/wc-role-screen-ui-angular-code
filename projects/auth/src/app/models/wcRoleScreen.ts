@@ -4,14 +4,16 @@ import { Screen } from './screen';
 import { WorkCenterRole } from './wcRole';
 
 export interface WorkCenterRoleScreens {
-  id?: number;
-  roleId?: Role;
-  wcRoleId?: WorkCenterRole;
-  screenId?: Screen;
+  id?: WorkCenterRoleScreensCompositeKey;
   isSelected?: boolean;
   accessValue?: number;
   canInsert?: boolean;
   canUpdate?: boolean;
-  canDelete?: boolean;
+  canRemove?: boolean;
   canView?: boolean;
+}
+
+export interface WorkCenterRoleScreensCompositeKey {
+  wcRoleId?: WorkCenterRole;
+  screenId?: Screen;
 }

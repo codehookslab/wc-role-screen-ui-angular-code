@@ -47,4 +47,8 @@ export class RoleService {
   saveuser(user: User) {
     return this.http.post<User[]>('/auth/users', user);
   }
+
+  saveAllWcRoleScreensArrays(valuesToSave: WorkCenterRoleScreens[]) {
+    return this.http.post<WorkCenterRoleScreens[]>('/auth/wc-role-screens', valuesToSave);
+  }
 }

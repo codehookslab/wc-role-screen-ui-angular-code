@@ -15,10 +15,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let wcrs of workCenterRoleScreens" (click)="handleOnClick(wcrs)">
+          <tr *ngFor="let wcrs of _workCenterRoles" (click)="onSelectWorkCenterRole(wcrs)">
             <td>
-              <select>
-                <option *ngFor="let wc of workCenterRoles">{{ wc.wcId.workcentercode }} - {{ wc.roleId.roleName}}
+              <select [(ngModel)]="wcrs.id">
+                <option *ngFor="let wc of workCenterRoleMasters" [(ngValue)]="wc.id">{{ wc.id.wcId.workcentercode }} -
+                  {{ wc.id.roleId.roleName}}
                 </option>
               </select>
             </td>
@@ -40,13 +41,13 @@
             <th scope="col">Delete</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let wcrs of selectedWorkCenterRole.screens; let i = index;">
+        <tbody *ngIf="_selectedWorkCenterRole">
+          <tr *ngFor="let wcrs of _selectedWorkCenterRole.screens; let i = index;">
             <td>
               <label>{{ i+1 }}</label>
             </td>
             <td>
-              <label>{{ wcrs.screenId.name }}</label>
+              <label>{{ wcrs.id.screenId.name }}</label>
             </td>
             <td>
               <input type="checkbox" [(ngModel)]="wcrs.isSelected">
@@ -61,7 +62,7 @@
               <input type="checkbox" [(ngModel)]="wcrs.canUpdate">
             </td>
             <td>
-              <input type="checkbox" [(ngModel)]="wcrs.canDelete">
+              <input type="checkbox" [(ngModel)]="wcrs.canRemove">
             </td>
           </tr>
         </tbody>

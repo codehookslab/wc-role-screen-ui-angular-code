@@ -3,9 +3,13 @@ import { WorkCenter } from './workcenter';
 import { WorkCenterRoleScreens } from './wcRoleScreen';
 
 export interface WorkCenterRole {
-  id?: number;
-  roleId?: Role;
-  wcId?: WorkCenter;
+  id?: WorkCenterRoleCompositeKey;
   screens?: WorkCenterRoleScreens[];
   isSelected?: boolean;
+}
+
+
+export interface WorkCenterRoleCompositeKey {
+  roleId?: Role;
+  wcId?: WorkCenter;
 }

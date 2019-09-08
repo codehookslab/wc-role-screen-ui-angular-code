@@ -56,6 +56,7 @@ export class WorkCenterRoleComponent implements OnInit {
       this.workCenterRoles = response[2];
 
       console.log(this.workCenters);
+      console.log(this.roles);
 
       this.selectedWorkCenterRole = this.workCenterRoles[0];
       // console.log('----- Roles')
@@ -80,10 +81,7 @@ export class WorkCenterRoleComponent implements OnInit {
 
   handleSaveClick() {
     console.log('Saving role')
-    // this.selectedWorkCenterRole.screens = this.screens.filter(screen => screen.isSelected)
-    // this.roles
-    console.log(this.roles);
-
+    console.log(this.workCenterRoles)
     this.roleService.saveAllWcRoleScreens(this.workCenterRoles).subscribe(response => {
       console.log(response)
       this.workCenterRoles = response;
@@ -95,7 +93,13 @@ export class WorkCenterRoleComponent implements OnInit {
   handleAddClick() {
     // this.setScreensToRole()
     // this.screens.forEach(screen => screen.isSelected = false)
-    this.workCenterRoles.push({ roleId: this.roles[0], id: undefined, wcId: this.workCenters[0], screens: [] });
+    this.workCenterRoles.push({
+      id: {
+        roleId: this.roles[0],
+        wcId: this.workCenters[0]
+      },
+      screens: []
+    });
     this.selectedWorkCenterRole = this.workCenterRoles[this.roles.length];
   }
 
